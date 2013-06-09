@@ -18,6 +18,7 @@ public class SensorMLIndexImpl implements SensorMLIndex {
 		// TODO Auto-generated method stub
 		SolrServer server = new HttpSolrServer(url);
 		SolrInputDocument solrdoc = new SolrInputDocument();
+		server.deleteByQuery( "*:*" );
 		/*
 		 * Simple fields added
 		 */
@@ -28,10 +29,10 @@ public class SensorMLIndexImpl implements SensorMLIndex {
 		Keywords[] keywords = process.getKeywordsArray();
 		KeywordList keywordList = (keywords[0].getKeywordList());
 		String [] str_keywords = keywordList.getKeywordArray();
-		solrdoc.addField("id",process.getId());
-		System.out.println(process.getId());
 		for(int i=0;i<str_keywords.length;i++)
-			solrdoc.addField(Constants.KEYWORDS,str_keywords[i]);
+			solrdoc.addField("keyword",str_keywords[i]);
+		String id = (process.getIdentificationArray()[0].getIdentifierList().getIdentifierArray()[0].getTerm().getValue());
+		solrdoc.addField("id",id);
 		server.add(solrdoc);
 		server.commit();
 	}

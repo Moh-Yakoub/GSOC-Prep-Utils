@@ -32,8 +32,9 @@ public class SensorMLIndexImplTest {
 			//e.printStackTrace();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			fail(e.toString());
+			
 			e.printStackTrace();
+			fail(e.toString());
 		}
 	}
 }
