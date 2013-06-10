@@ -17,7 +17,7 @@ public class SensorMLIndexImpl implements SensorMLIndex {
 		// TODO Auto-generated method stub
 		SolrServer server = new HttpSolrServer(url);
 		SolrInputDocument solrdoc = new SolrInputDocument();
-		server.deleteByQuery( "*:*" );
+	//	server.deleteByQuery( "*:*" );
 		/*
 		 * Simple fields added
 		 */
@@ -38,5 +38,13 @@ public class SensorMLIndexImpl implements SensorMLIndex {
 		solrdoc.addField("endPosition", endPosition);
 		server.add(solrdoc);
 		server.commit();
+	}
+	/*
+	 * For testing purposes only -- not very useful
+	 */
+	public  void deleteAll()throws Exception{
+		SolrServer server = new HttpSolrServer(url);
+		SolrInputDocument solrdoc = new SolrInputDocument();
+		server.deleteByQuery( "*:*" );
 	}
 }
