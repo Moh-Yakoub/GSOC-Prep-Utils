@@ -8,14 +8,14 @@ import net.opengis.sensorML.x101.AbstractProcessType;
 import net.opengis.sensorML.x101.KeywordsDocument.Keywords;
 import net.opengis.sensorML.x101.KeywordsDocument.Keywords.KeywordList;
 import net.opengis.sensorML.x101.SensorMLDocument.SensorML;
+import net.prep.solr.sensorml.Constants;
 import net.prep.solr.sensorml.SensorMLIndex;
 
 public class SensorMLIndexImpl implements SensorMLIndex {
-	private String url = "http://localhost:8983/solr";
-
+	
 	public void index(SensorML sensor) throws Exception {
 		// TODO Auto-generated method stub
-		SolrServer server = new HttpSolrServer(url);
+		SolrServer server = new HttpSolrServer(Constants.URL);
 		SolrInputDocument solrdoc = new SolrInputDocument();
 	//	server.deleteByQuery( "*:*" );
 		/*
@@ -43,7 +43,7 @@ public class SensorMLIndexImpl implements SensorMLIndex {
 	 * For testing purposes only -- not very useful
 	 */
 	public  void deleteAll()throws Exception{
-		SolrServer server = new HttpSolrServer(url);
+		SolrServer server = new HttpSolrServer(Constants.URL);
 		SolrInputDocument solrdoc = new SolrInputDocument();
 		server.deleteByQuery( "*:*" );
 	}
