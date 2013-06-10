@@ -42,7 +42,7 @@
 				</gml:TimePeriod>
 			</validTime>
 			<capabilities>
-				<swe:DataRecord definition="urn:ogc:def:property:capabilities">
+				<swe:DataRecord definition="urn:ogc:def:property:capabilities">d
 					<!--station is NOT collecting data -->
 					<swe:field name="status">
 						<swe:Boolean definition="urn:ogc:def:property:OGC:1.0:isActive">

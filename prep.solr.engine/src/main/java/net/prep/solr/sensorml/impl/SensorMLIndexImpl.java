@@ -8,7 +8,6 @@ import net.opengis.sensorML.x101.AbstractProcessType;
 import net.opengis.sensorML.x101.KeywordsDocument.Keywords;
 import net.opengis.sensorML.x101.KeywordsDocument.Keywords.KeywordList;
 import net.opengis.sensorML.x101.SensorMLDocument.SensorML;
-import net.prep.solr.sensorml.Constants;
 import net.prep.solr.sensorml.SensorMLIndex;
 
 public class SensorMLIndexImpl implements SensorMLIndex {
@@ -32,7 +31,11 @@ public class SensorMLIndexImpl implements SensorMLIndex {
 		for(int i=0;i<str_keywords.length;i++)
 			solrdoc.addField("keyword",str_keywords[i]);
 		String id = (process.getIdentificationArray()[0].getIdentifierList().getIdentifierArray()[0].getTerm().getValue());
+		String beginPosition  = (process.getValidTime().getTimePeriod().getBeginPosition().getStringValue());
+		String endPosition = process.getValidTime().getTimePeriod().getEndPosition().getStringValue();
 		solrdoc.addField("id",id);
+		solrdoc.addField("beginPosition", beginPosition);
+		solrdoc.addField("endPosition", endPosition);
 		server.add(solrdoc);
 		server.commit();
 	}
