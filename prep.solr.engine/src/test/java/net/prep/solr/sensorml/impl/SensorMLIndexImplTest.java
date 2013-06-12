@@ -57,13 +57,18 @@ public class SensorMLIndexImplTest {
 						.getEndPosition().getStringValue();
 				
 				StringBuilder sb = new StringBuilder();
-				sb.append("q=");
+				
 				sb.append("id:");
 				sb.append('"');
 				sb.append(id);
 				sb.append('"');
-				sb.append("&defType=edismax");
+				
+				
+				
+				
 				List<Object> list = searchImpl.getForQuery(sb.toString());
+				if(list.size() < 1)
+					fail("Document not found");
 				SolrDocument doc = (SolrDocument) list.get(0);
 				
 				

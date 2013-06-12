@@ -21,7 +21,7 @@ public class SensorMLSearchImpl implements SensorMLSearch {
 		// TODO Auto-generated method stub
 		SolrServer server = new HttpSolrServer(Constants.URL);
 		SolrQuery solrquery = new SolrQuery();
-		solrquery.setQuery("*");
+		solrquery.setQuery(query);
 		QueryResponse response = server.query(solrquery);
 		SolrDocumentList list = response.getResults();
 		
