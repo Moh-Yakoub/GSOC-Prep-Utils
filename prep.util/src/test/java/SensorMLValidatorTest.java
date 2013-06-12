@@ -1,4 +1,5 @@
 import static org.junit.Assert.fail;
+import net.n52north.validator.SensorMLValidator;
 import net.opengis.sensorML.x101.SensorMLDocument;
 
 import org.junit.Test;

@@ -36,6 +36,7 @@ public class SensorMLIndexImpl implements SensorMLIndex {
 		solrdoc.addField("id",id);
 		solrdoc.addField("beginPosition", beginPosition);
 		solrdoc.addField("endPosition", endPosition);
+		System.out.println(solrdoc.toString());
 		server.add(solrdoc);
 		server.commit();
 	}

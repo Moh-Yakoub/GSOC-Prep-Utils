@@ -26,7 +26,7 @@ public class SensorMLIndexImplTest {
 					.getSystemResourceAsStream("testsensor.xml"));
 			SensorML sensor = s.getSensorML();
 			/*
-			 * Just delete all the old indexed - for testing inly
+			 * Just delete all the old indexed - for testing only
 			 */
 			SensorMLIndexImpl impl = new SensorMLIndexImpl();
 			impl.deleteAll();
@@ -38,8 +38,10 @@ public class SensorMLIndexImplTest {
 
 			try {
 				SensorMLSearchImpl searchImpl = new SensorMLSearchImpl();
-				List<Object> list = searchImpl.getForQuery("*");
-				SolrDocument doc = (SolrDocument) list.get(0);
+				
+				/*
+				 * Prepare the query
+				 */
 				AbstractProcessType process = sensor.getMemberArray()[0]
 						.getProcess();
 
@@ -53,6 +55,17 @@ public class SensorMLIndexImplTest {
 						.getBeginPosition().getStringValue());
 				String endPosition = process.getValidTime().getTimePeriod()
 						.getEndPosition().getStringValue();
+				
+				StringBuilder sb = new StringBuilder();
+				sb.append("q=");
+				sb.append("id:");
+				sb.append('"');
+				sb.append(id);
+				sb.append('"');
+				sb.append("&defType=edismax");
+				List<Object> list = searchImpl.getForQuery(sb.toString());
+				SolrDocument doc = (SolrDocument) list.get(0);
+				
 				
 				
 				if(!id.equals(doc.get("id")))
